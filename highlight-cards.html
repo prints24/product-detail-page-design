@@ -429,7 +429,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
 <div class="lg:col-span-5 flex flex-col">
 <!-- Header -->
 <div class="border-b border-gray-100 pb-6 mb-6">
-<h1 class="text-3xl font-serif font-bold text-gray-900 mb-2">Luxury 800 GSM</h1>
+<h1 id="product-name" class="text-3xl font-serif font-bold text-gray-900 mb-2">800GSM + Texture</h1>
 <div class="flex items-center justify-between">
 <p class="text-sm text-gray-500">Ultra-thick, premium impact business cards.</p>
 <div class="text-right">
@@ -596,7 +596,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
         const materials = [
             {
                 id: 'texture',
-                name: 'Texture',
+                name: '800GSM + Texture',
                 price: 2.00,
                 desc: 'A premium white stock with a deep, tactile crosshatch texture. Adds sophistication to minimalist designs.',
                 mainImg: 'Minimalist+luxury+business+card+mockup%2C+800gsm+white+textured+paper%2C+clean+studio+shot%2C+soft+shadows%2C+high+res&aspect=4:3',
@@ -604,7 +604,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
             },
             {
                 id: 'craft',
-                name: 'Kraft',
+                name: '800GSM + Craft',
                 price: 2.50,
                 desc: '100% recycled brown kraft pulp. Earthy, rustic, and honest. Visible natural fibers give unique character.',
                 mainImg: 'Minimalist+luxury+business+card+mockup%2C+800gsm+brown+kraft+paper%2C+rustic+studio+shot%2C+warm+lighting&aspect=4:3',
@@ -612,7 +612,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
             },
             {
                 id: 'black',
-                name: 'Black',
+                name: '800GSM + Black',
                 price: 3.25,
                 desc: 'Dyed black through the core. Velvety smooth matte finish. Best paired with Foil Stamping.',
                 mainImg: 'Minimalist+luxury+business+card+mockup%2C+800gsm+matte+black+card%2C+gold+foil+logo%2C+moody+lighting&aspect=4:3',
@@ -620,7 +620,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
             },
             {
                 id: 'foil',
-                name: 'Pearl',
+                name: '800GSM + Foil',
                 price: 3.75,
                 desc: 'Infused with mica crystals for a subtle, elegant sparkle that catches the light.',
                 mainImg: 'Minimalist+luxury+business+card+mockup%2C+800gsm+pearlescent+white+shimmer+card%2C+ethereal+lighting&aspect=4:3',
@@ -628,7 +628,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
             },
             {
                 id: 'matte',
-                name: 'Grey',
+                name: '800GSM + Matte',
                 price: 2.80,
                 desc: 'A modern concrete grey finish. Industrial, sleek, and perfect for architectural or tech brands.',
                 mainImg: 'Minimalist+luxury+business+card+mockup%2C+800gsm+grey+concrete+card%2C+architectural+style%2C+clean+lighting&aspect=4:3',
@@ -646,6 +646,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
         const variantDesc = document.getElementById('variant-desc');
         const priceDisplay = document.getElementById('price-display');
         const totalPriceDisplay = document.getElementById('total-price');
+        const productName = document.getElementById('product-name');
 
         // --- Init ---
         function init() {
@@ -718,6 +719,7 @@ p.add(t.target);p=u(p);for(l=p.next();!l.done;l=p.next())a(l.value)}),Vd=0,ha=ne
             }
 
             // 2. Update Details
+            productName.textContent = mat.name;
             variantDesc.textContent = mat.desc;
             variantDesc.classList.remove('fade-in-text');
             void variantDesc.offsetWidth;
