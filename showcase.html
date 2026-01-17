@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Showcase | PRINTS24</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        /* Rating star styles */
+        .star { cursor: pointer; transition: color 0.2s; }
+        .star.filled { color: #fbbf24; }
+        .star:hover { color: #fbbf24; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h1 class="text-3xl font-serif text-slate-900 text-center">Design Showcase</h1>
+            <p class="text-slate-500 text-center mt-2">Explore our premium business card designs</p>
+        </div>
+    </header>
+
+    <!-- Gallery -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8">
+        <div id="gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards will be inserted here by JS -->
+        </div>
+    </main>
+
+    <script>
+        const designs = [
+            { id: 'square-varients', name: '800 GSM Luxury Business Cards', desc: 'Product detail page for selecting variants of 800 GSM business cards with thumbnail gallery and detailed specifications for each material', link: 'square-varients.html' },
+            { id: 'tabs', name: '800 GSM Luxury Business Cards with Tabs', desc: 'Business card selection using tabbed navigation for different materials like texture and kraft, with product specs', link: 'tabs.html' },
+            { id: 'favicon-tabs', name: 'Luxury Business Cards with Icon Tabs', desc: 'Icon-based tab navigation for selecting materials such as texture white and eco kraft, with interactive image updates', link: 'favicon-tabs.html' },
+            { id: 'premium-look', name: 'Luxury Business Cards Material Lab', desc: 'Interactive material selector with swatches, specs, and immersive visuals for premium 800 GSM cards', link: 'premium-look.html' },
+            { id: 'luxury-cards', name: '800 GSM Premium Business Cards', desc: 'Compact design with circular swatch selection, image previews, and specification grid for luxury card variants', link: 'luxury-cards.html' }
+        ];
+
+        const gallery = document.getElementById('gallery');
+
+        function renderCards() {
+            designs.forEach(design => {
+                const rating = localStorage.getItem('rating-' + design.id) || 0;
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow';
+                card.innerHTML = `
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">${design.name}</h3>
+                        <p class="text-slate-600 text-sm mb-4">${design.desc}</p>
+                        <a href="${design.link}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4">View Design</a>
+                        <div class="flex space-x-1" data-id="${design.id}">
+                            ${[1,2,3,4,5].map(i => `<span class="material-symbols-outlined star text-slate-300 ${i <= rating ? 'filled' : ''}" data-rating="${i}">star</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                gallery.appendChild(card);
+            });
+
+            // Add event listeners
+            document.querySelectorAll('.star').forEach(star => {
+                star.addEventListener('click', function() {
+                    const id = this.parentElement.dataset.id;
+                    const rating = parseInt(this.dataset.rating);
+                    localStorage.setItem('rating-' + id, rating);
+                    updateStars(id, rating);
+                });
+            });
+        }
+
+        function updateStars(id, rating) {
+            const stars = document.querySelectorAll(`[data-id="${id}"] .star`);
+            stars.forEach((star, index) => {
+                star.classList.toggle('filled', index < rating);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCards);
+    </script>
+
+</body>
+</html>
