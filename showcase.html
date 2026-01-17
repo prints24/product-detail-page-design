@@ -57,6 +57,7 @@
                         <div class="flex space-x-1" data-id="${design.id}">
                             ${[1,2,3,4,5].map(i => `<span class="material-symbols-outlined star text-slate-300 ${i <= rating ? 'filled' : ''}" data-rating="${i}">star</span>`).join('')}
                         </div>
+                        <button class="vote-btn bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-2" data-id="${design.id}">Vote</button>
                     </div>
                 `;
                 gallery.appendChild(card);
@@ -69,6 +70,35 @@
                     const rating = parseInt(this.dataset.rating);
                     localStorage.setItem('rating-' + id, rating);
                     updateStars(id, rating);
+                });
+            });
+
+            document.querySelectorAll('.vote-btn').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const id = this.dataset.id;
+                    this.disabled = true;
+                    this.textContent = 'Voting...';
+                    try {
+                        const ipResponse = await fetch('https://api.ipify.org?format=json');
+                        if (!ipResponse.ok) throw new Error('Failed to fetch IP');
+                        const ipData = await ipResponse.json();
+                        const userIP = ipData.ip;
+                        const scriptURL = 'https://script.google.com/macros/s/AKfycbxS2GEsGkb7dQ_MSfIKdP72vc1n7YY42sAYyvmJMOPZbno1meZ29cvHmFC_Nf-jM7bb/exec'; // Replace with actual Google Apps Script URL
+                        const response = await fetch(scriptURL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ ip: userIP, designId: id })
+                        });
+                        if (!response.ok) throw new Error('Voting request failed');
+                        const result = await response.text(); // Adjust based on script response
+                        this.textContent = 'Voted';
+                    } catch (error) {
+                        console.error('Voting error:', error);
+                        this.textContent = 'Vote Failed';
+                        this.disabled = false; // Allow retry
+                    }
                 });
             });
         }
