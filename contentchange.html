@@ -37,9 +37,10 @@
     <!-- VIEW 1: WARNING MODAL (HIDDEN) -->
     <div id="view-warning" class="hidden text-center">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Order Sequence Warning</h2>
-        <button onclick="showWarning()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-2xl font-bold shadow-xl transition-all active:scale-95">
+        <button onclick="showWarning()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-2xl font-bold shadow-xl transition-all active:scale-95 mb-4">
             Start Job: #976989
         </button>
+        <p class="text-[10px] text-red-600 font-bold uppercase tracking-tight">Note: Your points will be reduced.</p>
     </div>
 
     <!-- VIEW 2: UPLOAD GUIDE -->
@@ -198,7 +199,8 @@
             <div class="p-8 text-center bg-rose-50/30">
                 <h2 class="text-xl font-black text-red-700 mb-1 leading-tight uppercase">Wrong Sequence</h2>
                 <div class="text-gray-800 font-bold mb-4">Order #976989 is not next!</div>
-                <button onclick="actionConfirmed()" class="w-full bg-red-600 text-white font-bold py-3 rounded-xl transition-all active:scale-95 shadow-lg">Yes, Start Anyway</button>
+                <button onclick="actionConfirmed()" class="w-full bg-red-600 text-white font-bold py-3 rounded-xl transition-all active:scale-95 shadow-lg mb-4">Yes, Start Anyway</button>
+                <p class="text-[9px] text-red-600 font-bold uppercase">Note: Your points will be reduced.</p>
             </div>
         </div>
     </div>
