@@ -30,8 +30,8 @@
     <!-- Navigation Tabs -->
     <div class="flex bg-gray-200 p-1 rounded-xl mb-8 shadow-inner overflow-x-auto max-w-full">
         <button onclick="switchView('warning')" id="tab-warning" class="whitespace-nowrap px-4 sm:px-6 py-2 rounded-lg font-bold transition-all text-gray-500 hover:text-gray-700">1. Warning</button>
-        <button onclick="switchView('upload')" id="tab-upload" class="whitespace-nowrap px-4 sm:px-6 py-2 rounded-lg font-bold transition-all text-gray-500 hover:text-gray-700">2. Guide</button>
-        <button onclick="switchView('error')" id="tab-error" class="whitespace-nowrap px-4 sm:px-6 py-2 rounded-lg font-bold transition-all bg-white shadow text-gray-900 border border-gray-100">3. Upload Error</button>
+        <button onclick="switchView('upload')" id="tab-upload" class="whitespace-nowrap px-4 sm:px-6 py-2 rounded-lg font-bold transition-all bg-white shadow text-gray-900 border border-gray-100">2. Guide</button>
+        <button onclick="switchView('error')" id="tab-error" class="whitespace-nowrap px-4 sm:px-6 py-2 rounded-lg font-bold transition-all text-gray-500 hover:text-gray-700">3. Upload Error</button>
     </div>
 
     <!-- VIEW 1: WARNING MODAL (HIDDEN) -->
@@ -44,13 +44,16 @@
     </div>
 
     <!-- VIEW 2: UPLOAD GUIDE -->
-    <div id="view-upload" class="hidden w-full max-w-xl animate-in fade-in duration-300">
+    <div id="view-upload" class="w-full max-w-xl animate-in fade-in duration-300">
         <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
             
-            <!-- Promo Banner -->
-            <div class="bg-indigo-600 text-white px-4 py-2 text-center text-sm font-bold flex items-center justify-center gap-2">
-                <span class="bg-white text-indigo-600 px-2 py-0.5 rounded text-xs uppercase">Offer</span>
-                Save ₹20 instantly by uploading in PDF format!
+            <!-- Promo Banner (Updated for clarity) -->
+            <div class="bg-indigo-600 text-white px-4 py-3 text-center text-sm font-bold flex flex-col items-center justify-center leading-tight">
+                <div class="flex items-center gap-2 mb-0.5">
+                    <span class="bg-white text-indigo-600 px-2 py-0.5 rounded text-[10px] uppercase">PDF Discount</span>
+                    Save ₹20 instantly!
+                </div>
+                <span class="text-[11px] opacity-90 font-medium">Offer only for uploading a <span class="underline decoration-white/50">correct</span> 5-page PDF file.</span>
             </div>
 
             <div class="p-5">
@@ -58,7 +61,7 @@
                 <div class="flex justify-between items-start mb-4">
                     <div>
                         <h3 class="text-gray-900 font-extrabold text-lg">File Instructions</h3>
-                        <p class="text-gray-500 text-xs mt-0.5">Prepare your file in this exact sequence:</p>
+                        <p class="text-gray-500 text-xs mt-0.5">Upload a <b class="text-gray-800">single file</b> with these 5 pages/layers:</p>
                     </div>
                     <div class="bg-amber-50 text-amber-700 px-3 py-1.5 rounded-lg font-bold text-xs border border-amber-100 whitespace-nowrap">
                         96 × 58 mm
@@ -104,20 +107,20 @@
                     </div>
                 </div>
 
-                <!-- Other Formats Example -->
+                <!-- Other Formats Example (Updated for "Single" file requirement) -->
                 <div class="mb-5 p-3 bg-blue-50 border border-blue-100 rounded-xl">
                     <h4 class="text-blue-800 text-[11px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        If not using PDF:
+                        If not using PDF (No Discount):
                     </h4>
-                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] text-blue-700/80">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-[11px] text-blue-700/80">
                         <div>
                             <span class="font-bold text-blue-800 block">CDR / PSD / AI:</span>
-                            Use 5 Pages or 5 Layers in the same order.
+                            Upload <span class="text-blue-900 font-bold underline">one single file</span> containing all 5 pages or layers.
                         </div>
                         <div>
                             <span class="font-bold text-blue-800 block">JPG / PNG:</span>
-                            Name files <span class="bg-white px-1 rounded border border-blue-200 text-blue-900 font-mono">1.jpg</span> to <span class="bg-white px-1 rounded border border-blue-200 text-blue-900 font-mono">5.jpg</span>
+                            Upload <span class="text-blue-900 font-bold underline">one single ZIP file</span> containing all 5 images (1 to 5).
                         </div>
                     </div>
                 </div>
@@ -129,57 +132,27 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
                     </div>
-                    <p class="text-sm font-bold text-gray-800">Drop your file(s) here</p>
-                    <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tight font-bold">PDF · CDR · PSD · AI · JPG · PNG</p>
+                    <p class="text-sm font-bold text-gray-800">Drop your single file here</p>
+                    <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tight font-bold">PDF · CDR · PSD · AI · ZIP (Images)</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- VIEW 3: COMPACT UPLOAD ERROR -->
-    <div id="view-error" class="w-full max-w-xl space-y-6 animate-in fade-in duration-300">
-        
-        <!-- Example A: PDF Error (Existing) -->
+    <!-- VIEW 3: COMPACT UPLOAD ERROR (HIDDEN) -->
+    <div id="view-error" class="hidden w-full max-w-xl space-y-6 animate-in fade-in duration-300">
+        <!-- Error contents same as previous version -->
         <div class="space-y-2">
-            <div class="flex items-center justify-between px-1">
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Example 1: PDF Error</span>
-                <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-bold">PDF Format</span>
-            </div>
-            
-            <div class="bg-[#FFF4E5] border border-[#FFDDB3] rounded-lg p-3 flex items-center gap-3 shadow-sm">
+            <div class="bg-[#FFF4E5] border border-[#FFDDB3] rounded-lg p-3 flex items-center gap-3">
                 <svg class="w-5 h-5 text-[#B26B00] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/></svg>
                 <p class="text-[#663D00] text-sm font-medium">PDF has <span class="font-bold text-red-600">6 pages</span>, but exactly <span class="font-bold underline">5 pages</span> are required.</p>
             </div>
-
             <div class="px-3 py-1 flex items-center gap-2 text-gray-600 border-l-2 border-gray-200 ml-3">
                 <p class="text-xs sm:text-sm">PDF Discount of <span class="font-bold text-red-600">₹20.00</span> not applied.</p>
             </div>
-
             <div class="bg-[#FFF0F0] border border-[#FFD9D9] rounded-lg p-3 flex items-center justify-between gap-3 shadow-sm">
                 <p class="text-[#C53030] text-xs font-bold">Fix PDF pages to get this discount.</p>
                 <button class="bg-[#C53030] text-white text-[10px] font-black uppercase px-3 py-2 rounded-md flex items-center gap-1 whitespace-nowrap"><svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>Watch Tutorial</button>
-            </div>
-        </div>
-
-        <!-- Example B: JPG/Images Error (New) -->
-        <div class="space-y-2 border-t border-dashed border-gray-200 pt-6">
-            <div class="flex items-center justify-between px-1">
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Example 2: Image/Source Error</span>
-                <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-bold">JPG / CDR Format</span>
-            </div>
-
-            <div class="bg-[#FFF4E5] border border-[#FFDDB3] rounded-lg p-3 flex items-center gap-3 shadow-sm">
-                <svg class="w-5 h-5 text-[#B26B00] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/></svg>
-                <p class="text-[#663D00] text-sm font-medium">Uploaded <span class="font-bold text-red-600">3 files</span>. You must upload <span class="font-bold underline">5 files</span> named 1 to 5.</p>
-            </div>
-
-            <div class="px-3 py-1 flex items-center gap-2 text-gray-500 italic border-l-2 border-gray-200 ml-3">
-                <p class="text-xs sm:text-sm">₹20 Discount <span class="font-bold text-gray-900">not available</span> for JPG/CDR format.</p>
-            </div>
-
-            <div class="bg-gray-100 border border-gray-200 rounded-lg p-3 flex items-center justify-between gap-3 shadow-sm">
-                <p class="text-gray-600 text-xs font-bold">Upload as PDF to save ₹20 instantly.</p>
-                <button onclick="switchView('upload')" class="bg-indigo-600 text-white text-[10px] font-black uppercase px-3 py-2 rounded-md whitespace-nowrap">How to save?</button>
             </div>
         </div>
     </div>
